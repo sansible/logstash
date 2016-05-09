@@ -1,0 +1,21 @@
+---
+
+elk_logstash:
+  default_config: yes
+  family: 2.0
+  group: logstash
+  user: logstash
+  version: 1:2.0.0-1
+
+  inputs:
+    json:
+      port: 5001
+
+  outputs:
+    elasticsearch:
+      host: elasticsearch.elk.internal
+      port: 9200
+
+  plugins:
+    - logstash-patterns-core
+    - logstash-filter-prune
