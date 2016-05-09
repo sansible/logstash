@@ -1,10 +1,62 @@
-# ELK Logstash
+# Logstash
+
+Master: [![Build Status](https://travis-ci.org/sansible/logstash.svg?branch=master)](https://travis-ci.org/sansible/logstash)  
+Develop: [![Build Status](https://travis-ci.org/sansible/logstash.svg?branch=develop)](https://travis-ci.org/sansible/logstash)
+
+* [ansible.cfg](#ansible-cfg)
+* [Installation and Dependencies](#installation-and-dependencies)
+* [Tags](#tags)
+* [Examples](#examples)
 
 This roles installs Logstash for the ELK stack.
 
 For more information on Logstash please visit [elastic logstash](https://www.elastic.co/products/logstash).
 
-## Example Playbook
+
+
+
+## ansible.cfg
+
+This role is designed to work with merge "hash_behaviour". Make sure your
+ansible.cfg contains these settings
+
+```INI
+[defaults]
+hash_behaviour = merge
+```
+
+
+
+
+## Installation and Dependencies
+
+This role will install `sansible.users_and_groups` for managing `logstash`
+user.
+
+To install run `ansible-galaxy install sansible.logstash` or add this to your
+`roles.yml`
+
+```YAML
+- name: sansible.logstash
+  version: v1.0
+```
+
+and run `ansible-galaxy install -p ./roles -r roles.yml`
+
+
+
+
+## Tags
+
+This role uses two tags: **build** and **configure**
+
+* `build` - Installs Logstash and all it's dependencies.
+* `configure` - Configure and ensures that the Logstash service is running.
+
+
+
+
+## Examples
 
 To install:
 
@@ -13,22 +65,5 @@ To install:
   hosts: "{{ hosts }}"
 
   roles:
-    - role: elk_logstash
-```
-
-To configure:
-
-```YAML
-- name: Configure ELK Logstash
-  hosts: "{{ hosts }}"
-
-  vars_files:
-    - ../js_roles/elk_logstash/defaults/main.yml
-
-  handlers:
-    - include: ../js_roles/elk_logstash/handlers/main.yml
-
-  tasks:
-    - name: Configure Kibana
-      include: ../js_roles/elk_logstash/tasks/configure.yml
+    - role: sansible.logstash
 ```

@@ -25,11 +25,6 @@ script:
   - cd tests/vagrant/
   # Test the "build" stage
   - ansible-playbook -i inventory test.yml --tags=build --connection=local
-  - >
-    ansible-playbook -i inventory test.yml --tags=build --connection=local
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
   # Test the "configure" stage
   - ansible-playbook -i inventory test.yml --tags=configure --connection=local
   - >
