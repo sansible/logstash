@@ -1,17 +1,5 @@
 ---
 
-galaxy_info:
-  author: "David Reed"
-  description: "Install Logstash."
-  license: MIT
-  min_ansible_version: 1.9
-  platforms:
-    - name: Ubuntu
-      versions:
-        - all
-  categories:
-    - development
-
 dependencies:
   - role: sansible.users_and_groups
     version: v1.0
@@ -23,3 +11,15 @@ dependencies:
           group: "{{ elk_logstash.group }}"
     tags:
       - build
+      
+galaxy_info:
+  author: "David Reed"
+  description: "Install Logstash."
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+  categories:
+    - development
