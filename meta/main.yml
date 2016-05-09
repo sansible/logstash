@@ -5,10 +5,10 @@ dependencies:
     version: v1.0
     users_and_groups:
       groups:
-        - name: "{{ elk_logstash.group }}"
+        - name: "{{ logstash.group }}"
       users:
-        - name: "{{ elk_logstash.user }}"
-          group: "{{ elk_logstash.group }}"
+        - name: "{{ logstash.user }}"
+          group: "{{ logstash.group }}"
     tags:
       - build
       

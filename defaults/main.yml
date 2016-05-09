@@ -1,6 +1,6 @@
 ---
 
-elk_logstash:
+logstash:
   default_config: yes
   family: 2.0
   group: logstash

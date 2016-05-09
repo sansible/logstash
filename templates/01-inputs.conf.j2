@@ -4,7 +4,7 @@
 
 input {
 	tcp {
-		port => {{ elk_logstash.inputs.json.port }}
+		port => {{ logstash.inputs.json.port }}
 		codec => json
 	}
 }

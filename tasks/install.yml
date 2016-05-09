@@ -16,20 +16,20 @@
 - name: Install Logstash repo
   become: yes
   apt_repository:
-    repo: "deb http://packages.elasticsearch.org/logstash/{{ elk_logstash.family }}/debian stable main"
+    repo: "deb http://packages.elasticsearch.org/logstash/{{ logstash.family }}/debian stable main"
     state: present
 
 - name: Install Logstash
   become: yes
   apt:
-    name: "logstash={{ elk_logstash.version }}"
+    name: "logstash={{ logstash.version }}"
 
 - name: Install logstash plugins
   become: yes
   shell: "bin/plugin install {{ item }}"
   args:
     chdir: "/opt/logstash"
-  with_items: elk_logstash.plugins
+  with_items: logstash.plugins
   notify:
     - restart logstash
 
