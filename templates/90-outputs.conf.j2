@@ -6,13 +6,13 @@ output {
 	if [index_name] {
 		elasticsearch {
 			flush_size => '100'
-			hosts => [ '{{ elk_logstash.outputs.elasticsearch.host }}:{{ elk_logstash.outputs.elasticsearch.port }}' ]
+			hosts => [ '{{ logstash.outputs.elasticsearch.host }}:{{ logstash.outputs.elasticsearch.port }}' ]
 			index => 'logstash-%{+YYYY.MM.dd}-%{index_name}'
 		}
 	} else {
 		elasticsearch {
 			flush_size => '100'
-			hosts => [ '{{ elk_logstash.outputs.elasticsearch.host }}:{{ elk_logstash.outputs.elasticsearch.port }}' ]
+			hosts => [ '{{ logstash.outputs.elasticsearch.host }}:{{ logstash.outputs.elasticsearch.port }}' ]
 			index => 'logstash-%{+YYYY.MM.dd}'
 		}
 	}
