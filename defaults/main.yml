@@ -13,6 +13,9 @@ logstash:
     json:
       port: 5001
 
+  java:
+    version: 8
+
   outputs:
     elasticsearch:
       host: elasticsearch.elk.internal
