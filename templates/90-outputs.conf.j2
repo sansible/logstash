@@ -3,17 +3,9 @@
 #
 
 output {
-	if [index_name] {
-		elasticsearch {
-			flush_size => '100'
-			hosts => [ '{{ logstash.outputs.elasticsearch.host }}:{{ logstash.outputs.elasticsearch.port }}' ]
-			index => 'logstash-%{+YYYY.MM.dd}-%{index_name}'
-		}
-	} else {
-		elasticsearch {
-			flush_size => '100'
-			hosts => [ '{{ logstash.outputs.elasticsearch.host }}:{{ logstash.outputs.elasticsearch.port }}' ]
-			index => 'logstash-%{+YYYY.MM.dd}'
-		}
+	elasticsearch {
+		flush_size => '100'
+		hosts => [ '{{ logstash.outputs.elasticsearch.host }}:{{ logstash.outputs.elasticsearch.port }}' ]
+		index => 'logstash-%{+YYYY.MM.dd}'
 	}
 }

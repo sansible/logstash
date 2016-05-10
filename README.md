@@ -67,3 +67,29 @@ To install:
   roles:
     - role: sansible.logstash
 ```
+
+With your own config files:
+
+
+```YAML
+- name: Elk Logstash
+  hosts: "{{ hosts }}"
+
+  roles:
+    - role: sansible.logstash
+      logstash:
+        default_config: no
+
+  tasks:
+    - name: Configure logstash
+      become: yes
+      template:
+        src: "{{ item }}.j2"
+        dest: "/etc/logstash/conf.d/{{ item }}"
+      with_items:
+        - templates/01-inputs.conf
+        - templates/10-filters.conf
+        - templates/90-outputs.conf
+      notify:
+        - restart logstash
+```
