@@ -31,7 +31,7 @@ hash_behaviour = merge
 ## Installation and Dependencies
 
 This role will install `sansible.users_and_groups` for managing `logstash`
-user.
+user and `sansible.java` for installing java.
 
 To install run `ansible-galaxy install sansible.logstash` or add this to your
 `roles.yml`

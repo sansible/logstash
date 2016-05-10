@@ -1,12 +1,5 @@
 ---
 
-- name: Install supporting packages
-  become: yes
-  apt:
-    name: "{{ item }}"
-  with_items:
-    - openjdk-7-jre-headless
-
 - name: Add Logstash gpg key
   become: yes
   apt_key:
