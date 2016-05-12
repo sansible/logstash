@@ -11,3 +11,4 @@
     - 90-outputs.conf
   notify:
     - restart logstash
+  when: logstash.default_config
