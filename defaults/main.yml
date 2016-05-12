@@ -6,6 +6,7 @@ logstash:
   default_config: yes
   family: 2.0
   group: logstash
+  java_heap_size: "{{ (ansible_memtotal_mb / 2) | int }}"
   user: logstash
   version: 1:2.0.0-1
 
