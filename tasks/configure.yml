@@ -21,3 +21,9 @@
   notify:
     - restart logstash
   when: logstash.default_config
+
+- name: Ensure Logstash service is started
+  become: yes
+  service:
+    name: logstash
+    state: started
