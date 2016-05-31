@@ -25,3 +25,5 @@ logstash:
   plugins:
     - logstash-patterns-core
     - logstash-filter-prune
+
+  plugins_update: []

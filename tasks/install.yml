@@ -26,6 +26,15 @@
   notify:
     - restart logstash
 
+- name: Update logstash plugins
+  become: yes
+  shell: "bin/plugin update --no-verify {{ item }}"
+  args:
+    chdir: "/opt/logstash"
+  with_items: logstash.plugins_update
+  notify:
+    - restart logstash
+
 - name: Enable logstash service
   become: yes
   service:
