@@ -22,7 +22,7 @@
   shell: "bin/plugin install {{ item }}"
   args:
     chdir: "/opt/logstash"
-  with_items: logstash.plugins
+  with_items: "{{ logstash.plugins }}"
   notify:
     - restart logstash
 
@@ -31,7 +31,7 @@
   shell: "bin/plugin update --no-verify {{ item }}"
   args:
     chdir: "/opt/logstash"
-  with_items: logstash.plugins_update
+  with_items: "{{ logstash.plugins_update }}"
   notify:
     - restart logstash
 
