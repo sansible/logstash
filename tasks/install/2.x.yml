@@ -1,0 +1,38 @@
+---
+
+- name: Add Logstash gpg key
+  become: yes
+  apt_key:
+    url: https://packages.elasticsearch.org/GPG-KEY-elasticsearch
+    state: present
+
+- name: Install Logstash repo
+  become: yes
+  apt_repository:
+    repo: "deb http://packages.elasticsearch.org/logstash/{{ logstash.family }}/debian stable main"
+    state: present
+
+- name: Install Logstash
+  become: yes
+  apt:
+    name: "logstash={{ logstash.version }}"
+
+- name: Install logstash plugins
+  become: yes
+  shell: "bin/plugin list {{ item }} || bin/plugin install {{ item }}"
+  register: install_result
+  args:
+    chdir: "/opt/logstash"
+  with_items: "{{ logstash.plugins }}"
+  changed_when: "'Installation successful' in install_result.stdout"
+  notify:
+    - restart logstash
+
+- name: Update logstash plugins
+  become: yes
+  shell: "bin/plugin update --no-verify {{ item }}"
+  args:
+    chdir: "/opt/logstash"
+  with_items: "{{ logstash.plugins_update }}"
+  notify:
+    - restart logstash

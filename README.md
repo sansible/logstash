@@ -68,6 +68,19 @@ To install:
     - role: sansible.logstash
 ```
 
+To install 5.* version:
+
+```YAML
+- name: Elk Logstash
+  hosts: "{{ hosts }}"
+
+  roles:
+    - role: sansible.logstash
+      logstash:
+        family: 5.x
+        version: 1:5.4.*
+```
+
 With your own config files:
 
 

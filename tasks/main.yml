@@ -4,7 +4,7 @@
   include: install.yml
   tags:
     - build
-    
+
 - name: Configure Logstash
   include: configure.yml
   tags:
