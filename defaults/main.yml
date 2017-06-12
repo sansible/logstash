@@ -4,7 +4,7 @@ logstash:
   # If set to no you will need to write all config files
   # in an extending role
   default_config: yes
-  family: 2.0
+  family: "2.0"
   group: logstash
   java_heap_size: "{{ (ansible_memtotal_mb / 2) | int }}"
   user: logstash
