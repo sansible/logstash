@@ -1,12 +1,17 @@
 ---
 
-- name: "Install 2.x Family"
+- name: Install apt-transport-https
+  become: yes
+  apt:
+    name: apt-transport-https
+
+- name: Install 2.x Family
   include: install/2.x.yml
-  when: logstash.family == '2.0'
+  when: sansible_logstash_family == '2.x'
 
 - name: Install 5.x Family
   include: install/5.x.yml
-  when: logstash.family == '5.x'
+  when: sansible_logstash_family == '5.x'
 
 - name: Enable logstash service
   become: yes
