@@ -9,12 +9,12 @@
 - name: Install Logstash repo
   become: yes
   apt_repository:
-    repo: "deb https://artifacts.elastic.co/packages/{{ logstash.family }}/apt stable main"
+    repo: "deb https://artifacts.elastic.co/packages/{{ sansible_logstash_family }}/apt stable main"
     state: present
 
 - name: Install Logstash
   become: yes
   apt:
-    name: "logstash={{ logstash.version }}"
+    name: "logstash={{ sansible_logstash_version }}"
     state: installed
   notify: restart logstash

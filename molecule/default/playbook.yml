@@ -1,0 +1,9 @@
+---
+
+- name: Converge
+  hosts: all
+
+  roles:
+    - role: logstash
+      sansible_logstash_family: 5.x
+      sansible_logstash_version: 1:5.6.8-1

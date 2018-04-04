@@ -5,7 +5,7 @@
 output {
 	elasticsearch {
 		flush_size => '100'
-		hosts => [ '{{ logstash.outputs.elasticsearch.host }}:{{ logstash.outputs.elasticsearch.port }}' ]
+		hosts => [ '{{ sansible_logstash_outputs_elasticsearch_host }}:{{ sansible_logstash_outputs_elasticsearch_port }}' ]
 		index => 'logstash-%{+YYYY.MM.dd}'
 	}
 }
