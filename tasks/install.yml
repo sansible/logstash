@@ -7,7 +7,7 @@
 
 - name: Install 2.x Family
   include: install/2.x.yml
-  when: sansible_logstash_family == '2.x'
+  when: sansible_logstash_family[:1] == '2'
 
 - name: Install 5.x Family
   include: install/5.x.yml
