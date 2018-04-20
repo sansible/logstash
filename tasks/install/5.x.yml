@@ -18,3 +18,14 @@
     name: "logstash={{ sansible_logstash_version }}"
     state: installed
   notify: restart logstash
+
+- name: Install logstash plugins
+  become: yes
+  shell: "bin/logstash-plugin list {{ item }} || bin/logstash-plugin install {{ item }}"
+  register: install_result
+  args:
+    chdir: "/usr/share/logstash"
+  with_items: "{{ logstash.plugins }}"
+  changed_when: "'Installation successful' in install_result.stdout"
+  notify:
+    - restart logstash
