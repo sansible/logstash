@@ -1,6 +1,15 @@
-ANSIBLE_INSTALL_VERSION ?= 2.2.3.0
+ANSIBLE_INSTALL_VERSION ?= 2.6.11
+SCENARIO ?= all
+
 PATH := $(PWD)/.venv_ansible$(ANSIBLE_INSTALL_VERSION)/bin:$(shell printenv PATH)
 SHELL := env PATH=$(PATH) /bin/bash
+
+
+ifeq ($(SCENARIO), all)
+SCENARIO_OPT = "--all"
+else
+SCENARIO_OPT = "--scenario-name=$(SCENARIO)"
+endif
 
 .DEFAULT_GOAL := help
 .PHONY: all clean destroy help test
@@ -34,7 +43,7 @@ clean: destroy
 ## Run 'molecule destroy'
 destroy:
 	@if [ -x .venv_ansible$(ANSIBLE_INSTALL_VERSION)/bin/molecule ]; then \
-		.venv_ansible$(ANSIBLE_INSTALL_VERSION)/bin/molecule destroy; \
+		.venv_ansible$(ANSIBLE_INSTALL_VERSION)/bin/molecule destroy $(SCENARIO_OPT); \
 	elif (which -s molecule); then \
 		echo -e "\033[0;33mWARNING: molecule not found in virtualenv - trying to use molecule in PATH\033[0m"; \
 		molecule destroy; \
@@ -49,7 +58,7 @@ login_%: _check_venv
 
 ## Run 'molecule test --destroy=never' (run 'make destroy' to destroy containers)
 test: _check_venv
-	@.venv_ansible$(ANSIBLE_INSTALL_VERSION)/bin/molecule test --destroy=never
+	@.venv_ansible$(ANSIBLE_INSTALL_VERSION)/bin/molecule test $(SCENARIO_OPT) --destroy=never
 
 
 ## Create virtualenv, install dependencies
