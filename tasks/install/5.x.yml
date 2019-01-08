@@ -16,5 +16,5 @@
   become: yes
   apt:
     name: "logstash={{ sansible_logstash_version }}"
-    state: installed
+    state: present
   notify: restart logstash

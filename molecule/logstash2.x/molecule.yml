@@ -4,15 +4,10 @@ driver:
   name: docker
 
 platforms:
-  - name: sansible_logstash-default-xenial
+  - name: sansible_logstash-2x-trusty
+    image: ubuntu:trusty
+  - name: sansible_logstash-2x-xenial
     image: solita/ubuntu-systemd:xenial
-    command: /sbin/init
-    capabilities:
-      - SYS_ADMIN
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  - name: sansible_logstash-default-bionic
-    image: solita/ubuntu-systemd:bionic
     command: /sbin/init
     capabilities:
       - SYS_ADMIN
@@ -42,7 +37,7 @@ dependency:
     role-file: requirements.yml
 
 scenario:
-  name: default
+  name: logstash2.x
 
 verifier:
   name: testinfra
