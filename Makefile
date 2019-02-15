@@ -1,4 +1,4 @@
-ANSIBLE_INSTALL_VERSION ?= 2.6.11
+ANSIBLE_INSTALL_VERSION ?= 2.7.7
 SCENARIO ?= all
 
 PATH := $(PWD)/.venv_ansible$(ANSIBLE_INSTALL_VERSION)/bin:$(shell printenv PATH)

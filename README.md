@@ -23,7 +23,7 @@ To install run `ansible-galaxy install sansible.logstash` or add this to your
 
 ```YAML
 - name: sansible.logstash
-  version: v2.0
+  version: v2.1.x
 ```
 
 and run `ansible-galaxy install -p ./roles -r roles.yml`
