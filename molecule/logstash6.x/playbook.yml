@@ -15,5 +15,5 @@
 
   roles:
     - role: logstash
-      sansible_logstash_family: 5.x
-      sansible_logstash_version: 1:5.6.8-1
+      sansible_logstash_family: 6.x
+      sansible_logstash_version: 1:6.6.0-1

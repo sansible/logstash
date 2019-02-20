@@ -1,0 +1,50 @@
+---
+
+driver:
+  name: docker
+
+platforms:
+  - name: sansible_logstash-6x-xenial
+    image: solita/ubuntu-systemd:xenial
+    command: /sbin/init
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: sansible_logstash-6x-bionic
+    image: solita/ubuntu-systemd:bionic
+    command: /sbin/init
+    capabilities:
+      - SYS_ADMIN
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+
+lint:
+  name: yamllint
+  options:
+    config-data:
+      extends: default
+      ignore: .venv_ansible*
+      rules:
+        line-length:
+          max: 159
+        truthy: disable
+
+dependency:
+  name: galaxy
+  options:
+    ignore-certs: True
+    role-file: requirements.yml
+
+scenario:
+  name: logstash6.x
+
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
