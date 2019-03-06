@@ -1,5 +1,10 @@
 ---
 
+- name: Add libtool apt package required by Logstash
+  become: yes
+  apt:
+    name: libtool
+
 - name: Add Elastic gpg key
   become: yes
   apt_key:

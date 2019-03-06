@@ -23,7 +23,7 @@ To install run `ansible-galaxy install sansible.logstash` or add this to your
 
 ```YAML
 - name: sansible.logstash
-  version: v2.1.x
+  version: v3.0.x
 ```
 
 and run `ansible-galaxy install -p ./roles -r roles.yml`
@@ -39,7 +39,7 @@ This role uses two tags: **build** and **configure**
 
 ## Examples
 
-To install:
+To install 2.* version:
 
 ```YAML
 - name: Elk Logstash
@@ -47,6 +47,8 @@ To install:
 
   roles:
     - role: sansible.logstash
+      sansible_logstash_family: '2.4'
+      sansible_logstash_version: 1:2.4.1-1
 ```
 
 To install 5.* version:
@@ -58,10 +60,10 @@ To install 5.* version:
   roles:
     - role: sansible.logstash
       sansible_logstash_family: 5.x
-      sansible_logstash_version: 1:5.4.*
+      sansible_logstash_version: 1:5.4.0-1
 ```
 
-To install 6.* version:
+To install 6.* version (default):
 
 ```YAML
 - name: Elk Logstash
@@ -69,8 +71,20 @@ To install 6.* version:
 
   roles:
     - role: sansible.logstash
-      sansible_logstash_family: 6.x
-      sansible_logstash_version: 1:6.6.*
+```
+
+To install 6.* version with plugins:
+
+```YAML
+- name: Elk Logstash
+  hosts: "{{ hosts }}"
+
+  roles:
+    - role: sansible.logstash
+      sansible_logstash_plugins:
+        - logstash-patterns-core
+        - logstash-filter-prune
+
 ```
 
 
