@@ -17,3 +17,6 @@
     - role: logstash
       sansible_logstash_family: 6.x
       sansible_logstash_version: 1:6.6.0-1
+      sansible_logstash_plugins:
+        - logstash-patterns-core
+        - logstash-filter-prune
