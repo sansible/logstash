@@ -8,7 +8,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 def test_installed_packages(host):
     assert host.package('logstash').is_installed
-    assert host.package('logstash').version == '1:6.6.0-1'
+    assert host.package('logstash').version == '1:5.6.8-1'
 
 
 def test_files(host):
@@ -25,3 +25,7 @@ def test_files(host):
 def test_service(host):
     assert host.service('logstash').is_enabled
     assert host.service('logstash').is_running
+
+
+def test_socket(host):
+    assert host.socket('tcp://0.0.0.0:5001').is_listening

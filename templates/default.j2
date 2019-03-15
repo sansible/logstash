@@ -13,7 +13,6 @@ LS_OPTS=""
 
 # Arguments to pass to java
 LS_HEAP_SIZE="{{ sansible_logstash_java_heap_size }}m"
-LS_JAVA_OPTS="-Djava.io.tmpdir=$HOME"
 
 # pidfiles aren't used for upstart; this is for sysv users.
 LS_PIDFILE=/var/run/logstash.pid
