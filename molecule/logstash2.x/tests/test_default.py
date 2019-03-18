@@ -25,3 +25,7 @@ def test_files(host):
 def test_service(host):
     assert host.service('logstash').is_enabled
     assert host.service('logstash').is_running
+
+
+def test_socket(host):
+    assert host.socket('tcp://0.0.0.0:5001').is_listening

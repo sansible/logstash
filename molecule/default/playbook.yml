@@ -15,8 +15,15 @@
 
   roles:
     - role: logstash
-      sansible_logstash_family: 5.x
-      sansible_logstash_version: 1:5.6.8-1
+      sansible_logstash_family: 6.x
+      sansible_logstash_version: 1:6.6.0-1
       sansible_logstash_plugins:
         - logstash-patterns-core
         - logstash-filter-prune
+
+  post_tasks:
+    - name: Wait for service port
+      wait_for:
+        port: "{{ sansible_logstash_inputs_json_port }}"
+        state: started
+        timeout: 180

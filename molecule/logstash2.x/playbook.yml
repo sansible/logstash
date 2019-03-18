@@ -20,3 +20,10 @@
       sansible_logstash_plugins:
         - logstash-patterns-core
         - logstash-filter-prune
+
+  post_tasks:
+    - name: Wait for service port
+      wait_for:
+        port: "{{ sansible_logstash_inputs_json_port }}"
+        state: started
+        timeout: 600
