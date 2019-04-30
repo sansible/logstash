@@ -1,6 +1,4 @@
-###############################
-# Default settings for logstash
-###############################
+# {{ ansible_managed }}
 
 # Override Java location
 JAVACMD=/usr/bin/java
@@ -37,3 +35,7 @@ LS_NICE=19
 # not exited within a reasonable time, SIGKILL will be sent next.
 # The default behavior is to simply log a message "program stop failed; still running"
 KILL_ON_STOP_TIMEOUT=0
+
+{% if sansible_logstash_java_opts != None %}
+LS_JAVA_OPTS="{{ sansible_logstash_java_opts }}"
+{% endif %}
